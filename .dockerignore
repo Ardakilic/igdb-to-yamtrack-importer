@@ -1,0 +1,9 @@
+.git
+.gitignore
+bin/
+coverage.out
+*.coverprofile
+profile.cov
+yamtrack-import.csv
+README.md
+LICENSE

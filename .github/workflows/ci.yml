@@ -1,0 +1,83 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+
+      - name: go vet
+        run: go vet ./...
+
+      - name: gofmt check
+        run: |
+          if [ -n "$(gofmt -l .)" ]; then
+            echo "Formatting required:"
+            gofmt -l .
+            exit 1
+          fi
+
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+
+      - name: Run tests with coverage
+        run: |
+          go test -race -count=1 -covermode=atomic -coverprofile=coverage.out ./...
+
+      - name: Show coverage
+        run: go tool cover -func=coverage.out | tail -1
+
+      - name: Enforce ≥90% coverage
+        run: |
+          TOTAL=$(go tool cover -func=coverage.out | tail -1 | awk '{print $NF}' | tr -d '%')
+          if [ "$TOTAL" -lt 90 ]; then
+            echo "ERROR: Coverage $TOTAL% is below 90%"
+            exit 1
+          fi
+          echo "Coverage: $TOTAL%"
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+    strategy:
+      matrix:
+        goos: [linux, darwin, windows]
+        goarch: [amd64, arm64]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+
+      - name: Build
+        run: |
+          EXT=""
+          if [ "${{ matrix.goos }}" = "windows" ]; then EXT=".exe"; fi
+          CGO_ENABLED=0 GOOS=${{ matrix.goos }} GOARCH=${{ matrix.goarch }} \
+            go build -ldflags "-s -w" -o bin/igdb2yamtrack-${{ matrix.goos }}-${{ matrix.goarch }}${EXT} \
+            ./cmd/igdb2yamtrack
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: igdb2yamtrack-${{ matrix.goos }}-${{ matrix.goarch }}
+          path: bin/igdb2yamtrack-${{ matrix.goos }}-${{ matrix.goarch }}*
+          retention-days: 1

@@ -24,6 +24,12 @@ profile.cov
 go.work
 go.work.sum
 
+# Build output
+bin/
+
+# Default output file
+yamtrack-import.csv
+
 # env file
 .env
 

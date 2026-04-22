@@ -1,0 +1,4 @@
+id,game,url,rating,category,release_date,platforms,genres,themes,companies,description
+1942,1942,https://www.igdb.com/games/1942,80,0,1982,Arcade,Shooter,,Capcom,Vertical scrolling shooter
+76882,The Witcher 3: Wild Hunt,https://www.igdb.com/games/the-witcher-3-wild-hunt,95,0,2015-05-19,PC,RPG,Fantasy,CD Projekt Red,Open world RPG
+1020,Baldur's Gate,https://www.igdb.com/games/baldur-s-gate,,0,1998-12-21,"PC,Mac",RPG,Fantasy,BioWare,Classic CRPG
