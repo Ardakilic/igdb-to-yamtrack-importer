@@ -11,7 +11,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ardakilicdagi/igdb-yamtrack-importer/internal/config"
+	"github.com/ardakilic/igdb-yamtrack-importer/internal/config"
 )
 
 func igdbServer(t *testing.T, gamesResp any) *httptest.Server {

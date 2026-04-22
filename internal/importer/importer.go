@@ -6,11 +6,11 @@ import (
 	"fmt"
 	"log/slog"
 
-	"github.com/ardakilicdagi/igdb-yamtrack-importer/internal/config"
-	"github.com/ardakilicdagi/igdb-yamtrack-importer/internal/igdb"
-	"github.com/ardakilicdagi/igdb-yamtrack-importer/internal/igdbcsv"
-	"github.com/ardakilicdagi/igdb-yamtrack-importer/internal/mapping"
-	"github.com/ardakilicdagi/igdb-yamtrack-importer/internal/yamtrack"
+	"github.com/ardakilic/igdb-yamtrack-importer/internal/config"
+	"github.com/ardakilic/igdb-yamtrack-importer/internal/igdb"
+	"github.com/ardakilic/igdb-yamtrack-importer/internal/igdbcsv"
+	"github.com/ardakilic/igdb-yamtrack-importer/internal/mapping"
+	"github.com/ardakilic/igdb-yamtrack-importer/internal/yamtrack"
 )
 
 // Result summarises what happened during an import run.

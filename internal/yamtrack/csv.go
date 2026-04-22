@@ -16,7 +16,7 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/ardakilicdagi/igdb-yamtrack-importer/internal/igdbcsv"
+	"github.com/ardakilic/igdb-yamtrack-importer/internal/igdbcsv"
 )
 
 // header is the fixed column order required by Yamtrack's CSV importer.

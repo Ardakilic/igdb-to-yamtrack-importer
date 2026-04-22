@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ardakilicdagi/igdb-yamtrack-importer/internal/mapping"
+	"github.com/ardakilic/igdb-yamtrack-importer/internal/mapping"
 )
 
 const samplePlayed = `id,game,url,rating,category,release_date,platforms,genres,themes,companies,description

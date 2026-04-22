@@ -9,8 +9,8 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/ardakilicdagi/igdb-yamtrack-importer/internal/config"
-	"github.com/ardakilicdagi/igdb-yamtrack-importer/internal/importer"
+	"github.com/ardakilic/igdb-yamtrack-importer/internal/config"
+	"github.com/ardakilic/igdb-yamtrack-importer/internal/importer"
 )
 
 func main() {

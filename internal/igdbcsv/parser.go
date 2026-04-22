@@ -22,7 +22,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ardakilicdagi/igdb-yamtrack-importer/internal/mapping"
+	"github.com/ardakilic/igdb-yamtrack-importer/internal/mapping"
 )
 
 // Game represents one IGDB game entry after parsing.

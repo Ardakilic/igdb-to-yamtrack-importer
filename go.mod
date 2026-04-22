@@ -1,3 +1,3 @@
-module github.com/ardakilicdagi/igdb-yamtrack-importer
+module github.com/ardakilic/igdb-yamtrack-importer
 
 go 1.23

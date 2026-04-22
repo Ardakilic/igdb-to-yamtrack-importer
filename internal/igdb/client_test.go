@@ -10,8 +10,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ardakilicdagi/igdb-yamtrack-importer/internal/igdbcsv"
-	"github.com/ardakilicdagi/igdb-yamtrack-importer/internal/mapping"
+	"github.com/ardakilic/igdb-yamtrack-importer/internal/igdbcsv"
+	"github.com/ardakilic/igdb-yamtrack-importer/internal/mapping"
 )
 
 // fastTicker returns a high-frequency ticker channel so tests are not slowed down

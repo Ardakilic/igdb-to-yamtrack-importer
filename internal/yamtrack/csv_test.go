@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/ardakilicdagi/igdb-yamtrack-importer/internal/igdbcsv"
-	"github.com/ardakilicdagi/igdb-yamtrack-importer/internal/mapping"
+	"github.com/ardakilic/igdb-yamtrack-importer/internal/igdbcsv"
+	"github.com/ardakilic/igdb-yamtrack-importer/internal/mapping"
 )
 
 func rating(v float64) *float64 { return &v }

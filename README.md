@@ -31,13 +31,13 @@ The IGDB public API contains no user-specific data (your lists live only in the 
 ### go install
 
 ```bash
-go install github.com/ardakilicdagi/igdb-yamtrack-importer/cmd/igdb2yamtrack@latest
+go install github.com/ardakilic/igdb-yamtrack-importer/cmd/igdb2yamtrack@latest
 ```
 
 ### Build from source
 
 ```bash
-git clone https://github.com/ardakilicdagi/igdb-yamtrack-importer
+git clone https://github.com/ardakilic/igdb-yamtrack-importer
 cd igdb-to-yamtrack-importer
 make build
 ./bin/igdb2yamtrack

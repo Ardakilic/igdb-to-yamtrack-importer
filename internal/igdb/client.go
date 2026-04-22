@@ -14,7 +14,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ardakilicdagi/igdb-yamtrack-importer/internal/igdbcsv"
+	"github.com/ardakilic/igdb-yamtrack-importer/internal/igdbcsv"
 )
 
 const (
