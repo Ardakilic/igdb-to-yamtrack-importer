@@ -47,15 +47,16 @@ Examples:
     --igdb-client-secret YOUR_CLIENT_SECRET \
     --enrich-mode always
 
-  # Docker: build and run directly from git clone
-  docker build -t igdb2yamtrack . && \
+  # Docker: build image first
+  docker build -t igdb2yamtrack .
+
+  # Docker: run directly after build
   docker run --rm -v "$(pwd):/data" igdb2yamtrack /data/igdb-export.csv \
     --output /data/output.csv \
     --igdb-client-id YOUR_CLIENT_ID \
     --igdb-client-secret YOUR_CLIENT_SECRET
 
   # Docker: single CSV with status and API enrichment
-  docker build -t igdb2yamtrack . && \
   docker run --rm \
     -v ~/igdb-exports:/data:ro \
     -v ~/output:/output \

@@ -103,6 +103,14 @@ igdb2yamtrack ~/igdb-exports \
 
 ### Docker
 
+Build the image first:
+
+```bash
+docker build -t igdb2yamtrack .
+```
+
+Then run with your data:
+
 ```bash
 # Directory of per-list CSVs with API enrichment:
 docker run --rm \
