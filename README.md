@@ -104,12 +104,24 @@ igdb2yamtrack ~/igdb-exports \
 ### Docker
 
 ```bash
+# Directory of per-list CSVs with API enrichment:
 docker run --rm \
   -v ~/igdb-exports:/data:ro \
   -v ~/output:/output \
   igdb2yamtrack /data --output /output/yamtrack-import.csv \
   --igdb-client-id your_id \
   --igdb-client-secret your_secret
+
+# Single CSV with status and API enrichment:
+docker run --rm \
+  -v ~/igdb-exports:/data:ro \
+  -v ~/output:/output \
+  igdb2yamtrack /data/played.csv \
+  --status played \
+  --output /output/yamtrack-import.csv \
+  --igdb-client-id your_id \
+  --igdb-client-secret your_secret \
+  --enrich-mode always
 ```
 
 ## Status mapping

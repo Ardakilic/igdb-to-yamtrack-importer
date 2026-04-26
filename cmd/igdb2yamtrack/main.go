@@ -53,6 +53,18 @@ Examples:
     --output /data/output.csv \
     --igdb-client-id YOUR_CLIENT_ID \
     --igdb-client-secret YOUR_CLIENT_SECRET
+
+  # Docker: single CSV with status and API enrichment
+  docker build -t igdb2yamtrack . && \
+  docker run --rm \
+    -v ~/igdb-exports:/data:ro \
+    -v ~/output:/output \
+    igdb2yamtrack /data/played.csv \
+    --status played \
+    --output /output/yamtrack-import.csv \
+    --igdb-client-id YOUR_CLIENT_ID \
+    --igdb-client-secret YOUR_CLIENT_SECRET \
+    --enrich-mode always
 `)
 }
 
