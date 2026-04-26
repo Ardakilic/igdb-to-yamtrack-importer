@@ -72,7 +72,6 @@ Examples:
 func run() int {
 	args := os.Args[1:]
 
-	// Handle help flag before parsing
 	if len(args) > 0 && (args[0] == "-h" || args[0] == "--help") {
 		printUsage()
 		return 0

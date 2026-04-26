@@ -48,7 +48,37 @@ func ReadAll(csvDir, csvFile string) ([]Game, error) {
 	if csvDir != "" {
 		return readDir(csvDir)
 	}
-	return readFile(csvFile, "")
+	hasListColumn, err := hasListColumn(csvFile)
+	if err != nil {
+		return nil, err
+	}
+	if hasListColumn {
+		return readFile(csvFile, "")
+	}
+	listName := strings.TrimSuffix(filepath.Base(csvFile), filepath.Ext(csvFile))
+	return readFile(csvFile, listName)
+}
+
+func hasListColumn(csvFile string) (bool, error) {
+	f, err := os.Open(csvFile)
+	if err != nil {
+		return false, err
+	}
+	defer f.Close()
+
+	r := csv.NewReader(f)
+	header, err := r.Read()
+	if err != nil {
+		return false, err
+	}
+
+	for _, h := range header {
+		switch strings.ToLower(strings.TrimSpace(h)) {
+		case "list", "status":
+			return true, nil
+		}
+	}
+	return false, nil
 }
 
 // readDir reads every .csv file in dir. The filename without extension is used

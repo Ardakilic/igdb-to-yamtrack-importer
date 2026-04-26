@@ -241,3 +241,16 @@ func TestReadAll_MissingFile(t *testing.T) {
 		t.Fatal("expected error for missing file")
 	}
 }
+
+func TestReadAll_UserPlayedCSV(t *testing.T) {
+	games, err := ReadAll("", "../../igdb-exports/played.csv")
+	if err != nil {
+		t.Fatalf("ReadAll failed: %v", err)
+	}
+	if len(games) == 0 {
+		t.Fatal("expected games but got 0")
+	}
+	for i, g := range games[:3] {
+		t.Logf("[%d] ID=%d, Title=%s, Status=%s", i, g.IGDBID, g.Title, g.Status)
+	}
+}

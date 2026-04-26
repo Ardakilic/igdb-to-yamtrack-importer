@@ -58,15 +58,15 @@ func ParseFlags(args []string) (*Config, error) {
 		fmt.Fprintf(os.Stderr, "Try --help for usage.\n")
 	}
 
-	if err := fs.Parse(args); err != nil {
+	input, flagArgs := splitArgs(args)
+	if err := fs.Parse(flagArgs); err != nil {
 		return nil, err
 	}
 
-	if fs.NArg() < 1 {
+	if input == "" {
 		return nil, fmt.Errorf("missing required input argument (CSV file or directory)")
 	}
 
-	input := fs.Arg(0)
 	inputIsDir, err := isDirectory(input)
 	if err != nil {
 		return nil, fmt.Errorf("invalid input: %w", err)
@@ -106,6 +106,15 @@ func isDirectory(path string) (bool, error) {
 		return false, err
 	}
 	return fi.IsDir(), nil
+}
+
+func splitArgs(args []string) (input string, flagArgs []string) {
+	for i, arg := range args {
+		if !strings.HasPrefix(arg, "-") {
+			return arg, args[i+1:]
+		}
+	}
+	return "", args
 }
 
 func (c *Config) ShouldEnrich() bool {
