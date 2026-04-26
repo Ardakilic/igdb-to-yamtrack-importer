@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"flag"
 	"fmt"
 	"log/slog"
 	"os"
@@ -17,12 +16,52 @@ func main() {
 	os.Exit(run())
 }
 
+func printUsage() {
+	fmt.Fprintf(os.Stderr, `igdb2yamtrack - Import IGDB CSV exports to YamTrack format
+
+Usage: igdb2yamtrack <input> [flags]
+
+Arguments:
+  <input>   Path to CSV file or directory containing CSV files
+
+Flags:
+  --status string          Status for single-list CSV (played, playing, want_to_play, etc.)
+  --output string          Output file path (default "./yamtrack-import.csv")
+  --enrich-mode string     API enrichment: auto, always, or never (default "auto")
+  --igdb-client-id string  Twitch/IGDB OAuth client ID
+  --igdb-client-secret string  Twitch/IGDB OAuth client secret
+  --igdb-api-base string  IGDB REST API base URL (default "https://api.igdb.com/v4")
+  --igdb-oauth-url string  Twitch OAuth2 token endpoint (default "https://id.twitch.tv/oauth2/token")
+  --log-level string       Log level: debug, info, warn, error (default "info")
+
+Examples:
+  # Import a single CSV file
+  igdb2yamtrack ./my-igdb-export.csv
+
+  # Import all CSV files from a directory
+  igdb2yamtrack ./igdb-exports/
+
+  # Import with IGDB enrichment
+  igdb2yamtrack ./my-igdb-export.csv \
+    --igdb-client-id YOUR_CLIENT_ID \
+    --igdb-client-secret YOUR_CLIENT_SECRET \
+    --enrich-mode always
+
+  # Docker: build and run directly from git clone
+  docker build -t igdb2yamtrack . && \
+  docker run --rm -v "$(pwd):/data" igdb2yamtrack /data/igdb-export.csv \
+    --output /data/output.csv \
+    --igdb-client-id YOUR_CLIENT_ID \
+    --igdb-client-secret YOUR_CLIENT_SECRET
+`)
+}
+
 func run() int {
 	args := os.Args[1:]
 
 	// Handle help flag before parsing
 	if len(args) > 0 && (args[0] == "-h" || args[0] == "--help") {
-		flag.Usage()
+		printUsage()
 		return 0
 	}
 

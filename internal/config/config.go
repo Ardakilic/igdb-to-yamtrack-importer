@@ -55,10 +55,7 @@ func ParseFlags(args []string) (*Config, error) {
 	fs.StringVar(&fl.logLevel, "log-level", "info", "Log level: debug, info, warn, error")
 
 	fs.Usage = func() {
-		fmt.Fprintf(os.Stderr, "Usage: igdb2yamtrack <input> [flags]\n\n")
-		fmt.Fprintf(os.Stderr, "Arguments:\n  <input>   Path to CSV file or directory containing CSV files\n\n")
-		fmt.Fprintf(os.Stderr, "Flags:\n")
-		fs.PrintDefaults()
+		fmt.Fprintf(os.Stderr, "Try --help for usage.\n")
 	}
 
 	if err := fs.Parse(args); err != nil {
